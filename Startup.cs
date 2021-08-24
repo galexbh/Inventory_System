@@ -28,6 +28,16 @@ namespace Inventory_System
         {
 
             services.AddControllers();
+            services.AddCors(p =>
+            {
+                p.AddPolicy("policy", builder =>
+                {
+                    builder.AllowAnyHeader()
+                        .AllowAnyOrigin()
+                        .WithMethods("GET", "POST", "PUT", "DELETE")
+                        .Build();
+                });
+            });
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Inventory_System", Version = "v1" });
@@ -45,6 +55,8 @@ namespace Inventory_System
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors("policy");
 
             app.UseRouting();
 
