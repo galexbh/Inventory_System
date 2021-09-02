@@ -10,11 +10,11 @@
         "projectUniqueName": "/home/galexbh/Documentos/Github/Inventory_System/Inventory_System.csproj",
         "projectName": "Inventory_System",
         "projectPath": "/home/galexbh/Documentos/Github/Inventory_System/Inventory_System.csproj",
-        "packagesPath": "/root/.nuget/packages/",
+        "packagesPath": "/home/galexbh/.nuget/packages/",
         "outputPath": "/home/galexbh/Documentos/Github/Inventory_System/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/root/.nuget/NuGet/NuGet.Config"
+          "/home/galexbh/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -57,6 +57,10 @@
               "version": "[5.0.9, )"
             },
             "Microsoft.EntityFrameworkCore.InMemory": {
+              "target": "Package",
+              "version": "[5.0.9, )"
+            },
+            "Microsoft.EntityFrameworkCore.Proxies": {
               "target": "Package",
               "version": "[5.0.9, )"
             },
