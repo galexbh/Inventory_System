@@ -11,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Inventory_System.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace Inventory_System
 {
@@ -26,6 +28,14 @@ namespace Inventory_System
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<InventoryContext>(options =>
+            {
+                //https://github.com/dotnet/efcore/issues/11907
+                /*options.UseLazyLoadingProxies();*/
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+            });
+
+
 
             services.AddControllers();
             services.AddCors(p =>
@@ -40,7 +50,22 @@ namespace Inventory_System
             });
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Inventory_System", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "Inventory_System",
+                    Version = "v1",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Galexbh",
+                        Email = "galexbh@pm.me",
+                        Url = new Uri("http://t.me/galexbh"),
+                    },
+                    License = new OpenApiLicense
+                    {
+                        Name = "MIT",
+                        Url = new Uri("https://github.com/galexbh/Inventory_System/blob/main/LICENSE"),
+                    }
+                });
             });
         }
 
