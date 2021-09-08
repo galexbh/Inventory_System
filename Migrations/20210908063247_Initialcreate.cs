@@ -29,11 +29,12 @@ namespace Inventory_System.Migrations
                     UserId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     RoleId = table.Column<int>(type: "int", nullable: false),
-                    name = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
-                    secondName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
-                    sureName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
-                    lastName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
+                    secondName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
+                    sureName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
+                    lastName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
                     age = table.Column<int>(type: "int", nullable: false),
+                    phoneNumber = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     email = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
                     passwordHash = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     passwordSalt = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
@@ -51,7 +52,7 @@ namespace Inventory_System.Migrations
                 {
                     wineryId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    named = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    name = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
                     location = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true)
                 },
                 constraints: table =>

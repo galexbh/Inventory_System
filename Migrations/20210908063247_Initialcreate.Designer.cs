@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Inventory_System.Migrations
 {
     [DbContext(typeof(InventoryContext))]
-    [Migration("20210908055613_Initialcreate")]
+    [Migration("20210908063247_Initialcreate")]
     partial class Initialcreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -184,12 +184,12 @@ namespace Inventory_System.Migrations
                         .HasColumnType("nvarchar(250)");
 
                     b.Property<string>("lastName")
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("name")
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<byte[]>("passwordHash")
                         .HasColumnType("varbinary(max)");
@@ -197,13 +197,17 @@ namespace Inventory_System.Migrations
                     b.Property<byte[]>("passwordSalt")
                         .HasColumnType("varbinary(max)");
 
+                    b.Property<string>("phoneNumber")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<string>("secondName")
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("sureName")
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.HasKey("UserId");
 
@@ -221,7 +225,7 @@ namespace Inventory_System.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.Property<string>("named")
+                    b.Property<string>("name")
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 

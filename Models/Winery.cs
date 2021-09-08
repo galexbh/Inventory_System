@@ -11,7 +11,7 @@ namespace Inventory_System.Models
 
         public int wineryId { get; init; }
         [StringLength(20)]
-        public string named { get; init; }
+        public string name { get; init; }
         [StringLength(30)]
         public string location { get; init; }
 

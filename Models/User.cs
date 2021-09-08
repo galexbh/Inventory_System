@@ -12,15 +12,17 @@ namespace Inventory_System.Models
         [ForeignKey("branchOffice")]
         public int UserId { get; init; }
         public int RoleId { get; init; }
-        [StringLength(20)]
+        [StringLength(30)]
         public string name { get; init; }
-        [StringLength(20)]
+        [StringLength(30)]
         public string secondName { get; init; }
-        [StringLength(20)]
+        [StringLength(30)]
         public string sureName { get; init; }
-        [StringLength(20)]
+        [StringLength(30)]
         public string lastName { get; init; }
         public int age { get; init; }
+        [StringLength(50)]
+        public string phoneNumber { get; init; }
         [StringLength(250)]
         [EmailAddress(ErrorMessage = "email no valid")]
         [Required(ErrorMessage = "this field is required")]
