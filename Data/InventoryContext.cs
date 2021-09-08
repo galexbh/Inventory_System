@@ -10,6 +10,7 @@ namespace Inventory_System.Context
     public class InventoryContext : DbContext
     {
         public InventoryContext(DbContextOptions<InventoryContext> options) : base(options) { }
+
         public DbSet<Role> Roles { get; init; }
         public DbSet<Supplier> Suppliers { get; init; }
         public DbSet<User> Users { get; init; }
@@ -17,6 +18,7 @@ namespace Inventory_System.Context
         public DbSet<BranchOffice> BranchOffices { get; init; }
         public DbSet<Stock> Stocks { get; init; }
         public DbSet<Product> Products { get; init; }
+
 
     }
 }
