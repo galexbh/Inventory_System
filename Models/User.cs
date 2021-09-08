@@ -20,9 +20,15 @@ namespace Inventory_System.Models
         public string sureName { get; init; }
         [StringLength(20)]
         public string lastName { get; init; }
-        [StringLength(40)]
+        public int age { get; init; }
+        [StringLength(250)]
+        [EmailAddress(ErrorMessage = "email no valid")]
+        [Required(ErrorMessage = "this field is required")]
         public string email { get; init; }
-        public string password { get; init; }
+        public byte[] passwordHash { get; set; }
+        public byte[] passwordSalt { get; set; }
+        public DateTime dateCreation { get; init; }
+        public bool active { get; init; }
 
         public Role Role { get; init; }
         public virtual BranchOffice BranchOffice { get; init; }

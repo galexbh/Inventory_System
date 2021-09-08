@@ -23,6 +23,8 @@ namespace Inventory_System.Models
         public int IVA { get; init; }
         public int weight { get; init; }
         public double price { get; init; }
+        public DateTime dateCreation { get; init; }
+        public bool active { get; init; }
 
         public virtual Stock Stock { get; init; }
     }

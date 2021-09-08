@@ -9,6 +9,7 @@ namespace Inventory_System.Models
 {
     public record Role
     {
+        [Key]
         [ForeignKey("User")]
         public int RoleId { get; init; }
         [StringLength(20)]
