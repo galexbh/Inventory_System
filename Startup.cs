@@ -1,18 +1,20 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Inventory_System.Context;
 using Microsoft.EntityFrameworkCore;
+using Inventory_System.Data.Interfaces;
+using Inventory_System.Data;
+using Inventory_System.Mappers;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Inventory_System.Interfaces;
+using Inventory_System.Services;
 
 namespace Inventory_System
 {
@@ -35,9 +37,13 @@ namespace Inventory_System
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
 
-
-
             services.AddControllers();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IAuthRepository, AuthRepository>();
+            services.AddScoped<ITokenService, TokenService>();
+            services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
+
             services.AddCors(p =>
             {
                 p.AddPolicy("policy", builder =>
@@ -48,6 +54,20 @@ namespace Inventory_System
                         .Build();
                 });
             });
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8
+                            .GetBytes(Configuration["SecretKey"])),
+                        ValidateIssuer = false,
+                        ValidateAudience = false,
+                    };
+                });
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
@@ -58,13 +78,13 @@ namespace Inventory_System
                     {
                         Name = "Galexbh",
                         Email = "galexbh@pm.me",
-                        Url = new Uri("http://t.me/galexbh"),
+                        Url = new Uri("https://github.com/galexbh"),
                     },
                     License = new OpenApiLicense
                     {
                         Name = "MIT",
                         Url = new Uri("https://github.com/galexbh/Inventory_System/blob/main/LICENSE"),
-                    }
+                    },
                 });
             });
         }
@@ -84,6 +104,8 @@ namespace Inventory_System
             app.UseCors("policy");
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
