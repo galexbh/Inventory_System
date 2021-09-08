@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Inventory_System.Migrations
 {
@@ -32,8 +33,12 @@ namespace Inventory_System.Migrations
                     secondName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
                     sureName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
                     lastName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
-                    email = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: true),
-                    password = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    age = table.Column<int>(type: "int", nullable: false),
+                    email = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    passwordHash = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    passwordSalt = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    dateCreation = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    active = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -133,7 +138,9 @@ namespace Inventory_System.Migrations
                     internalCode = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: true),
                     IVA = table.Column<int>(type: "int", nullable: false),
                     weight = table.Column<int>(type: "int", nullable: false),
-                    price = table.Column<double>(type: "float", nullable: false)
+                    price = table.Column<double>(type: "float", nullable: false),
+                    dateCreation = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    active = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {

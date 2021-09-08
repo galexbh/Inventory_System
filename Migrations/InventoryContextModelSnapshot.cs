@@ -57,9 +57,15 @@ namespace Inventory_System.Migrations
                     b.Property<int?>("SupplierId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("active")
+                        .HasColumnType("bit");
+
                     b.Property<string>("brand")
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
+
+                    b.Property<DateTime>("dateCreation")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("description")
                         .HasMaxLength(140)
@@ -161,9 +167,19 @@ namespace Inventory_System.Migrations
                     b.Property<int>("RoleId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("active")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("age")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("dateCreation")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("email")
-                        .HasMaxLength(40)
-                        .HasColumnType("nvarchar(40)");
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
 
                     b.Property<string>("lastName")
                         .HasMaxLength(20)
@@ -173,8 +189,11 @@ namespace Inventory_System.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<string>("password")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<byte[]>("passwordHash")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<byte[]>("passwordSalt")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("secondName")
                         .HasMaxLength(20)
